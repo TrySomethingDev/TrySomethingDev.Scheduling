@@ -18,23 +18,33 @@ namespace TrySomethingDev.Scheduling.Tests
             var im = _schedulingApp.GetImportManager();
 
             im.ImportSingleResource();
+            im.ImportSingleJob();
 
-            int resourceCount = _schedulingApp.Resources.Count();
-            Assert.Equals(resourceCount, 1);
+            int resourceCount = _schedulingApp.GetResources().Count();
+            Assert.That(1, Is.EqualTo(resourceCount));
           
         }
 
         [Test]
         public void SequenceJobs()
-        { 
-            var res1 = _schedulingApp.Resources.First();
+        {
+
+            var im = _schedulingApp.GetImportManager();
+
+            im.ImportSingleResource();
+            im.ImportSingleJob();
+
+            int resourceCount = _schedulingApp.GetResources().Count();
+            Assert.That(1, Is.EqualTo(resourceCount));
+
+            var res1 = _schedulingApp.GetResources().First();
             
-            Assert.Equals(res1.JobsScheduled, 0);
+            Assert.AreEqual(0,res1.JobsScheduled.Count());
             
             var s = _schedulingApp.GetSequencer();
             
             s.SequenceAll();
-            Assert.Equals(res1.JobsScheduled, 1);
+            Assert.AreEqual(1,res1.JobsScheduled.Count());
         }
     }
 }

@@ -11,14 +11,15 @@ namespace TrySomethingDev.Scheduling.Library.Services
         private Sequencer _sequencer;
         private Resources _resources;
         private ImportManager _importManager;
+        private Jobs _jobs;
 
-        public object Resources { get; set; }
 
         public SchedulingApp()
         {
-            _importManager = new ImportManager();
-            _resources = new Resources();
-            _sequencer = new Sequencer();
+            _importManager = new ImportManager(this);
+            _resources = new Resources(this);
+            _jobs = new Jobs(this);
+            _sequencer = new Sequencer(this);
         }
 
         public ImportManager GetImportManager()
@@ -34,6 +35,11 @@ namespace TrySomethingDev.Scheduling.Library.Services
         public Resources GetResources()
         {
             return _resources;
+        }
+
+        public Jobs GetJobs()
+        {
+            return _jobs;
         }
     }
 
