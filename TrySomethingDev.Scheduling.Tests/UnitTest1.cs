@@ -1,0 +1,17 @@
+namespace TrySomethingDev.Scheduling.Tests
+{
+    public class Tests
+    {
+        [SetUp]
+        public void Setup()
+        {
+        }
+
+        [Test]
+        public void Test1()
+        {
+            //Test//
+            Assert.Pass();
+        }
+    }
+}
