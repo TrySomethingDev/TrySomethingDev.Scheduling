@@ -92,17 +92,13 @@ namespace TrySomethingDev.Scheduling.Tests
             var res1 = _schedulingApp.GetResources().First();
             Assert.AreEqual(0, res1.JobsScheduled.Count());
 
-
             //Make sure nothing is scheduled on resource 2
             var res2 = _schedulingApp.GetResources().Last();
             Assert.AreEqual(0, res2.JobsScheduled.Count());
 
-
             var s = _schedulingApp.GetSequencer();
             s.SequenceAll();
       
-
-
             Job job1 = _schedulingApp.GetJobs().First(x => x.Id == 1);
             Job job2 = _schedulingApp.GetJobs().First(x => x.Id == 2);
             Job job3 = _schedulingApp.GetJobs().First(x => x.Id ==3);
